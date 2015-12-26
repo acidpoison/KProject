@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2project>
+    <name>KProject</name>
+    <description></description>
+    <version>1.0.0.0</version>
+    <author></author>
+    <author-email></author-email>
+    <author-website>http://</author-website>
+    <app-id>com.mycompany.myapp</app-id>
+    <unique-id>z0qmyz64oemp</unique-id>
+    <saved-with-version>21100</saved-with-version>
+    <used-plugins>
+        <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
+        <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
+    </used-plugins>
+    <used-behaviors>
+        <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
+        <behavior author="Scirra" id="Platform" version="1">Platform</behavior>
+        <behavior author="Scirra" id="bound" version="1">Bound to layout</behavior>
+        <behavior author="Scirra" id="scrollto" version="1">Scroll To</behavior>
+        <behavior author="Scirra" id="solid" version="1">Solid</behavior>
+    </used-behaviors>
+    <used-effects />
+    <configurations>
+        <configuration exporter-descname="HTML5" exporter-id="html5" name="HTML5" />
+    </configurations>
+    <window-size>
+        <width>1280</width>
+        <height>720</height>
+    </window-size>
+    <pixel-rounding>0</pixel-rounding>
+    <preview-effects>1</preview-effects>
+    <use-loader-layout>0</use-loader-layout>
+    <configuration-settings>
+        <prop name="Clear background">Yes</prop>
+        <prop name="Downscaling">Medium quality</prop>
+        <prop name="Enable WebGL">On</prop>
+        <prop name="Fullscreen in browser">Letterbox scale</prop>
+        <prop name="Fullscreen scaling">High quality</prop>
+        <prop name="Loader style">Construct 2 splash</prop>
+        <prop name="Orientations">Any</prop>
+        <prop name="Pause on unfocus">No</prop>
+        <prop name="Physics engine">Box2D asm.js</prop>
+        <prop name="Preload sounds">Yes</prop>
+        <prop name="Preview browser">(default)</prop>
+        <prop name="Sampling">Linear</prop>
+        <prop name="Use high-DPI display">Yes</prop>
+    </configuration-settings>
+    <object-folder>
+        <object-type name="Player" sid="1539799732889497">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="HasWindBullet" sid="6389610551975897" type="string" />
+                <instance-variable name="PlayerDirection" sid="6798183532797192" type="string" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Solid" sid="7858351031600324">
+                    <behavior id="solid" />
+                </behavior-type>
+                <behavior-type name="ScrollTo" sid="4216603685322894">
+                    <behavior id="scrollto" />
+                </behavior-type>
+                <behavior-type name="BoundToLayout" sid="1835108808161825">
+                    <behavior id="bound" />
+                </behavior-type>
+                <behavior-type name="Platform" sid="400469797580244">
+                    <behavior id="Platform" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4824531445793388" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Tile" sid="6616438350396712">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Solid" sid="7489547769405659">
+                    <behavior id="solid" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1326461012617701" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="EnemyMoo" sid="8070062520567054">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="Captured" sid="2100188373976574" type="string" />
+                <instance-variable name="Move" sid="7370344816140866" type="string" />
+                <instance-variable name="SpawnUID" sid="3555005746559153" type="number" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Platform" sid="1108314830668775">
+                    <behavior id="Platform" />
+                </behavior-type>
+                <behavior-type name="Bullet" sid="1538513022256881">
+                    <behavior id="Bullet" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3421652831225635" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Keyboard" sid="4225027470888866">
+            <plugin id="Keyboard" />
+        </object-type>
+        <object-type name="WindBullet" sid="8963558011975733">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="Life" sid="4683603217838962" type="number" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Bullet" sid="2971953630603845">
+                    <behavior id="Bullet" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3239394588967196" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.64" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="EnemyMooLimitsL" sid="7764503269801341">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5336933383081262" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="EnemyMooLimitsR" sid="4978695799229418">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="8720518042425875" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="EnemyRespawnPortal" sid="3721963836356998">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="SpawnNewEnemy" sid="3863779461665304" type="string" />
+            </instance-variables>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1718964385081987" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+    </object-folder>
+    <families />
+    <layout-folder>
+        <layout>Layout 1.xml</layout>
+    </layout-folder>
+    <event-folder>
+        <event-sheet>Event sheet 1.xml</event-sheet>
+    </event-folder>
+    <global-instances>
+        <global-instance type="Keyboard" uid="19" />
+    </global-instances>
+    <sounds-folder />
+    <music-folder />
+    <files-folder>
+        <file-folder name="Icons">
+            <file name="icon-16.png" />
+            <file name="icon-32.png" />
+            <file name="icon-114.png" />
+            <file name="icon-128.png" />
+            <file name="icon-256.png" />
+            <file name="loading-logo.png" />
+        </file-folder>
+    </files-folder>
+</c2project>
