@@ -3,8 +3,24 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Event sheet 1</name>
     <events>
+        <variable constant="0" name="Lives" sid="2376603716063763" static="0" type="number">3</variable>
         <event-group description="" sid="7708274183545168" title="System">
             <sub-events>
+                <event-block sid="3958226667045787">
+                    <conditions>
+                        <condition id="-2" name="On start of layout" sid="124276369898287" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-4" name="Set position to another object" sid="2248812096962847" type="CameraFollow">
+                            <param id="0" name="Object">Player</param>
+                            <param id="1" name="Image point (optional)">0</param>
+                        </action>
+                        <action id="-4" name="Set position to another object" sid="3770152593599738" type="WindBullet">
+                            <param id="0" name="Object">Player</param>
+                            <param id="1" name="Image point (optional)">0</param>
+                        </action>
+                    </actions>
+                </event-block>
                 <event-block sid="1733019002160805">
                     <conditions>
                         <condition id="-1" name="Every tick" sid="5822956287694226" type="System" />
@@ -12,6 +28,15 @@
                     <actions>
                         <action id="-12" name="Subtract from" sid="3554446683823165" type="WindBullet">
                             <param id="0" name="Instance variable">Life</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-3" name="Set position" sid="640389001285078" type="CameraFollow">
+                            <param id="0" name="X">lerp(Self.X, Player.X, 0.05)</param>
+                            <param id="1" name="Y">lerp(Self.Y, Player.Y, 0.05)</param>
+                        </action>
+                        <action id="-24" name="Move to top" sid="1142933049354595" type="Player" />
+                        <action id="-12" name="Subtract from" sid="8769626346281702" type="EnemyRespawnPortal">
+                            <param id="0" name="Instance variable">CountDownToSpawn</param>
                             <param id="1" name="Value">1</param>
                         </action>
                     </actions>
@@ -24,6 +49,11 @@
                     <conditions>
                         <condition id="2" name="Key is down" sid="2791030947394648" type="Keyboard">
                             <param id="0" name="Key">39 (Right arrow)</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="6385918953615305" type="Player">
+                            <param id="0" name="Instance variable">ControlsEnabled</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;T&quot;</param>
                         </condition>
                     </conditions>
                     <actions>
@@ -41,6 +71,11 @@
                         <condition id="2" name="Key is down" sid="1349015314960132" type="Keyboard">
                             <param id="0" name="Key">37 (Left arrow)</param>
                         </condition>
+                        <condition id="-7" name="Compare instance variable" sid="5196092497625162" type="Player">
+                            <param id="0" name="Instance variable">ControlsEnabled</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;T&quot;</param>
+                        </condition>
                     </conditions>
                     <actions>
                         <action behavior="Platform" id="7" name="Simulate control" sid="7462581152191595" type="Player">
@@ -54,12 +89,17 @@
                 </event-block>
                 <event-block sid="4149159781519914">
                     <conditions>
-                        <condition id="2" name="Key is down" sid="2397899694227538" type="Keyboard">
+                        <condition id="0" name="On key pressed" sid="2397899694227538" type="Keyboard">
                             <param id="0" name="Key">90 (Z)</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="2660526874509739" type="Player">
+                            <param id="0" name="Instance variable">ControlsEnabled</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;T&quot;</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action behavior="Platform" id="7" name="Simulate control" sid="729661164047582" type="Player">
+                        <action behavior="Platform" id="7" name="Simulate control" sid="6772931445099899" type="Player">
                             <param id="0" name="Control">2</param>
                         </action>
                     </actions>
@@ -71,6 +111,11 @@
                         </condition>
                         <condition id="-7" name="Compare instance variable" sid="6210699422595222" type="Player">
                             <param id="0" name="Instance variable">HasWindBullet</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;T&quot;</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="6890712660652371" type="Player">
+                            <param id="0" name="Instance variable">ControlsEnabled</param>
                             <param id="1" name="Comparison">0</param>
                             <param id="2" name="Value">&quot;T&quot;</param>
                         </condition>
@@ -97,26 +142,247 @@
                             <param id="1" name="Comparison">0</param>
                             <param id="2" name="Value">&quot;T&quot;</param>
                         </condition>
+                        <condition id="-7" name="Compare instance variable" sid="3139964616279764" type="Player">
+                            <param id="0" name="Instance variable">ControlsEnabled</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;T&quot;</param>
+                        </condition>
                     </conditions>
                     <actions>
                         <action id="-10" name="Set value" sid="554246116563656" type="EnemyMoo">
                             <param id="0" name="Instance variable">Captured</param>
-                            <param id="1" name="Value">&quot;F&quot;</param>
+                            <param id="1" name="Value">&quot;Thrown&quot;</param>
                         </action>
                         <action id="-4" name="Set position to another object" sid="1165773035269442" type="EnemyMoo">
                             <param id="0" name="Object">Player</param>
                             <param id="1" name="Image point (optional)">0</param>
                         </action>
+                        <action behavior="Bullet" id="0" name="Set speed" sid="3104253246089559" type="EnemyMoo">
+                            <param id="0" name="Speed">500</param>
+                        </action>
                         <action behavior="Bullet" id="3" name="Set angle of motion" sid="94635018765229" type="EnemyMoo">
                             <param id="0" name="Angle">Player.Angle</param>
-                        </action>
-                        <action behavior="Bullet" id="0" name="Set speed" sid="3104253246089559" type="EnemyMoo">
-                            <param id="0" name="Speed">400</param>
                         </action>
                         <action behavior="Bullet" id="5" name="Set enabled" sid="9063883580247047" type="EnemyMoo">
                             <param id="0" name="State">1</param>
                         </action>
                         <action id="-10" name="Set value" sid="379308101238805" type="Player">
+                            <param id="0" name="Instance variable">HasWindBullet</param>
+                            <param id="1" name="Value">&quot;T&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="6558131283883612">
+                    <conditions>
+                        <condition id="0" name="On key pressed" sid="6079306469425659" type="Keyboard">
+                            <param id="0" name="Key">90 (Z)</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="7011775658945519" type="EnemyMoo">
+                            <param id="0" name="Instance variable">Captured</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;T&quot;</param>
+                        </condition>
+                        <condition behavior="Platform" id="3" name="Is jumping" sid="3414346402348748" type="Player" />
+                        <condition id="-7" name="Compare instance variable" sid="2906601170527029" type="Player">
+                            <param id="0" name="Instance variable">ControlsEnabled</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;T&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="4593605170201746" type="EnemyMoo">
+                            <param id="0" name="Instance variable">Captured</param>
+                            <param id="1" name="Value">&quot;Thrown&quot;</param>
+                        </action>
+                        <action id="-4" name="Set position to another object" sid="9335529781626202" type="EnemyMoo">
+                            <param id="0" name="Object">Player</param>
+                            <param id="1" name="Image point (optional)">0</param>
+                        </action>
+                        <action behavior="Bullet" id="0" name="Set speed" sid="9556055051470727" type="EnemyMoo">
+                            <param id="0" name="Speed">500</param>
+                        </action>
+                        <action behavior="Bullet" id="3" name="Set angle of motion" sid="3685485867466937" type="EnemyMoo">
+                            <param id="0" name="Angle">90</param>
+                        </action>
+                        <action behavior="Bullet" id="5" name="Set enabled" sid="2838345867986657" type="EnemyMoo">
+                            <param id="0" name="State">1</param>
+                        </action>
+                        <action behavior="Platform" id="9" name="Set vector Y" sid="6456273957945363" type="Player">
+                            <param id="0" name="Vector Y">-700</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="5456990123649682" type="Player">
+                            <param id="0" name="Instance variable">HasWindBullet</param>
+                            <param id="1" name="Value">&quot;T&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="9378398368552265">
+                    <conditions>
+                        <condition id="0" name="On key pressed" sid="4027003387433374" type="Keyboard">
+                            <param id="0" name="Key">90 (Z)</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="8811115844951535" type="EnemyMoo">
+                            <param id="0" name="Instance variable">Captured</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;T&quot;</param>
+                        </condition>
+                        <condition behavior="Platform" id="4" name="Is falling" sid="6647403717245909" type="Player" />
+                        <condition id="-7" name="Compare instance variable" sid="3006129592158819" type="Player">
+                            <param id="0" name="Instance variable">ControlsEnabled</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;T&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="8924410468972898" type="EnemyMoo">
+                            <param id="0" name="Instance variable">Captured</param>
+                            <param id="1" name="Value">&quot;Thrown&quot;</param>
+                        </action>
+                        <action id="-4" name="Set position to another object" sid="884710104750156" type="EnemyMoo">
+                            <param id="0" name="Object">Player</param>
+                            <param id="1" name="Image point (optional)">0</param>
+                        </action>
+                        <action behavior="Bullet" id="0" name="Set speed" sid="8119658381273594" type="EnemyMoo">
+                            <param id="0" name="Speed">500</param>
+                        </action>
+                        <action behavior="Bullet" id="3" name="Set angle of motion" sid="5969635259210146" type="EnemyMoo">
+                            <param id="0" name="Angle">90</param>
+                        </action>
+                        <action behavior="Bullet" id="5" name="Set enabled" sid="9614711733561886" type="EnemyMoo">
+                            <param id="0" name="State">1</param>
+                        </action>
+                        <action behavior="Platform" id="9" name="Set vector Y" sid="2469289355635177" type="Player">
+                            <param id="0" name="Vector Y">-700</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="3689731695893867" type="Player">
+                            <param id="0" name="Instance variable">HasWindBullet</param>
+                            <param id="1" name="Value">&quot;T&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="9335647931796714">
+                    <conditions>
+                        <condition id="0" name="On key pressed" sid="4424303801534677" type="Keyboard">
+                            <param id="0" name="Key">88 (X)</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="6356091850025449" type="EnemyFlyingMoo">
+                            <param id="0" name="Instance variable">Captured</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;T&quot;</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="4633129373719226" type="Player">
+                            <param id="0" name="Instance variable">ControlsEnabled</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;T&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="6804777311034653" type="EnemyFlyingMoo">
+                            <param id="0" name="Instance variable">Captured</param>
+                            <param id="1" name="Value">&quot;Thrown&quot;</param>
+                        </action>
+                        <action id="-4" name="Set position to another object" sid="8751993333270084" type="EnemyFlyingMoo">
+                            <param id="0" name="Object">Player</param>
+                            <param id="1" name="Image point (optional)">0</param>
+                        </action>
+                        <action behavior="Bullet" id="0" name="Set speed" sid="86349925528664" type="EnemyFlyingMoo">
+                            <param id="0" name="Speed">500</param>
+                        </action>
+                        <action behavior="Bullet" id="3" name="Set angle of motion" sid="6295906162023382" type="EnemyFlyingMoo">
+                            <param id="0" name="Angle">Player.Angle</param>
+                        </action>
+                        <action behavior="Bullet" id="5" name="Set enabled" sid="6216511387437065" type="EnemyFlyingMoo">
+                            <param id="0" name="State">1</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="4612460294579957" type="Player">
+                            <param id="0" name="Instance variable">HasWindBullet</param>
+                            <param id="1" name="Value">&quot;T&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="1362379062610211">
+                    <conditions>
+                        <condition id="0" name="On key pressed" sid="3610640376566503" type="Keyboard">
+                            <param id="0" name="Key">90 (Z)</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="1797322251257143" type="EnemyFlyingMoo">
+                            <param id="0" name="Instance variable">Captured</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;T&quot;</param>
+                        </condition>
+                        <condition behavior="Platform" id="3" name="Is jumping" sid="3903956929584884" type="Player" />
+                        <condition id="-7" name="Compare instance variable" sid="5081121688440021" type="Player">
+                            <param id="0" name="Instance variable">ControlsEnabled</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;T&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="2658002636433048" type="EnemyFlyingMoo">
+                            <param id="0" name="Instance variable">Captured</param>
+                            <param id="1" name="Value">&quot;Thrown&quot;</param>
+                        </action>
+                        <action id="-4" name="Set position to another object" sid="4388772364116744" type="EnemyFlyingMoo">
+                            <param id="0" name="Object">Player</param>
+                            <param id="1" name="Image point (optional)">0</param>
+                        </action>
+                        <action behavior="Bullet" id="0" name="Set speed" sid="942784589585095" type="EnemyFlyingMoo">
+                            <param id="0" name="Speed">500</param>
+                        </action>
+                        <action behavior="Bullet" id="3" name="Set angle of motion" sid="7687781277676248" type="EnemyFlyingMoo">
+                            <param id="0" name="Angle">90</param>
+                        </action>
+                        <action behavior="Bullet" id="5" name="Set enabled" sid="5237006446049463" type="EnemyFlyingMoo">
+                            <param id="0" name="State">1</param>
+                        </action>
+                        <action behavior="Platform" id="9" name="Set vector Y" sid="3599169385012443" type="Player">
+                            <param id="0" name="Vector Y">-700</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="1897141929076646" type="Player">
+                            <param id="0" name="Instance variable">HasWindBullet</param>
+                            <param id="1" name="Value">&quot;T&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="726910168640336">
+                    <conditions>
+                        <condition id="0" name="On key pressed" sid="737020617297366" type="Keyboard">
+                            <param id="0" name="Key">90 (Z)</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="5304599966261458" type="EnemyFlyingMoo">
+                            <param id="0" name="Instance variable">Captured</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;T&quot;</param>
+                        </condition>
+                        <condition behavior="Platform" id="4" name="Is falling" sid="6179735910079402" type="Player" />
+                        <condition id="-7" name="Compare instance variable" sid="6459728737474658" type="Player">
+                            <param id="0" name="Instance variable">ControlsEnabled</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;T&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="1089969563744735" type="EnemyFlyingMoo">
+                            <param id="0" name="Instance variable">Captured</param>
+                            <param id="1" name="Value">&quot;Thrown&quot;</param>
+                        </action>
+                        <action id="-4" name="Set position to another object" sid="4580176972906789" type="EnemyFlyingMoo">
+                            <param id="0" name="Object">Player</param>
+                            <param id="1" name="Image point (optional)">0</param>
+                        </action>
+                        <action behavior="Bullet" id="0" name="Set speed" sid="2975798816597587" type="EnemyFlyingMoo">
+                            <param id="0" name="Speed">500</param>
+                        </action>
+                        <action behavior="Bullet" id="3" name="Set angle of motion" sid="3372564033179943" type="EnemyFlyingMoo">
+                            <param id="0" name="Angle">90</param>
+                        </action>
+                        <action behavior="Bullet" id="5" name="Set enabled" sid="6775895602891207" type="EnemyFlyingMoo">
+                            <param id="0" name="State">1</param>
+                        </action>
+                        <action behavior="Platform" id="9" name="Set vector Y" sid="4490110147810736" type="Player">
+                            <param id="0" name="Vector Y">-700</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="288257834734709" type="Player">
                             <param id="0" name="Instance variable">HasWindBullet</param>
                             <param id="1" name="Value">&quot;T&quot;</param>
                         </action>
@@ -154,13 +420,47 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block sid="9654004970058364">
+                <event-block sid="5238688587426104">
                     <conditions>
-                        <condition id="1" name="Is overlapping another object" sid="4792164421180268" type="Player">
-                            <param id="0" name="Object">EnemyMoo</param>
+                        <condition behavior="Platform" id="0" inverted="1" name="Is moving" sid="6531806125734423" type="Player" />
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="6301591214703921" type="Player">
+                            <param id="0" name="Instance variable">ControlsEnabled</param>
+                            <param id="1" name="Value">&quot;T&quot;</param>
+                        </action>
+                        <action behavior="Platform" id="1" name="Set max speed" sid="483163805028738" type="Player">
+                            <param id="0" name="Max Speed">350</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="2068048377631147">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="5985038885271135" type="Player">
+                            <param id="0" name="Object">Health</param>
                         </condition>
                     </conditions>
-                    <actions />
+                    <actions>
+                        <action id="-9" name="Destroy" sid="2701481901110327" type="Health" />
+                        <action id="-11" name="Add to" sid="9461415150684777" type="Player">
+                            <param id="0" name="Instance variable">Health</param>
+                            <param id="1" name="Value">HealthHeart.HealthValue</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="1169522926736952">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="6162354047924984" type="Player">
+                            <param id="0" name="Object">1Up</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="5414493679303391" type="1Up" />
+                        <action id="-10" name="Add to" sid="6079229727165486" type="System">
+                            <param id="0" name="Variable">Lives</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
                 </event-block>
             </sub-events>
         </event-group>
@@ -178,11 +478,161 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-9" name="Destroy" sid="2142287778796587" type="WindBullet" />
+                        <action id="-10" name="Set value" sid="2142287778796587" type="WindBullet">
+                            <param id="0" name="Instance variable">Return</param>
+                            <param id="1" name="Value">&quot;T&quot;</param>
+                        </action>
+                        <action behavior="Bullet" id="5" name="Set enabled" sid="5099336225628998" type="WindBullet">
+                            <param id="0" name="State">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="9914599421962065">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="512136073527967" type="WindBullet">
+                            <param id="0" name="Instance variable">Return</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;T&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Set position" sid="5020306014175923" type="WindBullet">
+                            <param id="0" name="X">lerp(Self.X, Player.X, 0.5)</param>
+                            <param id="1" name="Y">lerp(Self.Y, Player.Y, 0.5)</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="8636332201817567">
+                    <conditions>
+                        <condition id="-1" name="Compare X" sid="4432845620703733" type="WindBullet">
+                            <param id="0" name="Comparison">4</param>
+                            <param id="1" name="X co-ordinate">Player.X - 10</param>
+                        </condition>
+                        <condition id="-1" name="Compare X" sid="7330709099688806" type="WindBullet">
+                            <param id="0" name="Comparison">2</param>
+                            <param id="1" name="X co-ordinate">Player.X + 10</param>
+                        </condition>
+                    </conditions>
+                    <actions>
                         <action id="-10" name="Set value" sid="1187784190235147" type="Player">
                             <param id="0" name="Instance variable">HasWindBullet</param>
                             <param id="1" name="Value">&quot;T&quot;</param>
                         </action>
+                        <action id="-10" name="Set value" sid="9362141196123022" type="WindBullet">
+                            <param id="0" name="Instance variable">Return</param>
+                            <param id="1" name="Value">&quot;F&quot;</param>
+                        </action>
+                        <action behavior="Bullet" id="5" name="Set enabled" sid="1582287635248938" type="WindBullet">
+                            <param id="0" name="State">1</param>
+                        </action>
+                        <action id="-9" name="Destroy" sid="5551777424475085" type="WindBullet" />
+                    </actions>
+                </event-block>
+                <event-block sid="1125308280461322">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="1020675530534601" type="WindBullet">
+                            <param id="0" name="Object">EnemyRespawnPortal</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="2827529840967091" type="EnemyRespawnPortal">
+                            <param id="0" name="Instance variable">CountDownToSpawn</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="3635663371733776" type="EnemyRespawnPortal">
+                            <param id="0" name="Instance variable">CountDownToSpawn</param>
+                            <param id="1" name="Value">-1</param>
+                        </action>
+                        <action id="-9" name="Destroy" sid="8225745773000925" type="WindBullet" />
+                    </actions>
+                    <sub-events>
+                        <event-block sid="2009171344744728">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="9964105384035394" type="EnemyRespawnPortal">
+                                    <param id="0" name="Instance variable">EnemyType</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;Moo&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="8220349990546158" type="EnemyRespawnPortal">
+                                    <param id="0" name="Object">EnemyMoo</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="3266480586136927" type="EnemyMoo">
+                                    <param id="0" name="Instance variable">SpawnUID</param>
+                                    <param id="1" name="Value">EnemyRespawnPortal.UID</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="8903994117425885" type="EnemyMoo">
+                                    <param id="0" name="Instance variable">Captured</param>
+                                    <param id="1" name="Value">&quot;T&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="700003577058077">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="3109143151375839" type="EnemyRespawnPortal">
+                                    <param id="0" name="Instance variable">EnemyType</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;FlyingMoo&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="7347663744422036" type="EnemyRespawnPortal">
+                                    <param id="0" name="Object">EnemyFlyingMoo</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="3337168874484054" type="EnemyFlyingMoo">
+                                    <param id="0" name="Instance variable">SpawnUID</param>
+                                    <param id="1" name="Value">EnemyRespawnPortal.UID</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="5412873111722609" type="EnemyFlyingMoo">
+                                    <param id="0" name="Instance variable">Captured</param>
+                                    <param id="1" name="Value">&quot;T&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="7375309452095241">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="6622005970893722" type="WindBullet">
+                            <param id="0" name="Object">EnemyMoo</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="4259576327186262" type="EnemyMoo">
+                            <param id="0" name="Instance variable">Captured</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;F&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="4968312601945151" type="EnemyMoo">
+                            <param id="0" name="Instance variable">Captured</param>
+                            <param id="1" name="Value">&quot;T&quot;</param>
+                        </action>
+                        <action id="-9" name="Destroy" sid="7678468513209213" type="WindBullet" />
+                    </actions>
+                </event-block>
+                <event-block sid="5300372214799">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="1166194419866723" type="WindBullet">
+                            <param id="0" name="Object">EnemyFlyingMoo</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="3832672737684613" type="EnemyFlyingMoo">
+                            <param id="0" name="Instance variable">Captured</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;F&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="4385915260616766" type="EnemyFlyingMoo">
+                            <param id="0" name="Instance variable">Captured</param>
+                            <param id="1" name="Value">&quot;T&quot;</param>
+                        </action>
+                        <action id="-9" name="Destroy" sid="1312339959581624" type="WindBullet" />
                     </actions>
                 </event-block>
             </sub-events>
@@ -199,51 +649,59 @@
                     </conditions>
                     <actions>
                         <action id="-3" name="Set position" sid="4524566518722738" type="EnemyMoo">
-                            <param id="0" name="X">Player.X</param>
-                            <param id="1" name="Y">Player.Y-75</param>
+                            <param id="0" name="X">lerp(Self.X, Player.X, 0.5)</param>
+                            <param id="1" name="Y">lerp(Self.Y, Player.Y - 75, 0.5)</param>
                         </action>
-                        <action behavior="Platform" id="11" name="Set enabled" sid="552340220896236" type="EnemyMoo">
+                        <action behavior="8Direction" id="8" name="Set enabled" sid="552340220896236" type="EnemyMoo">
                             <param id="0" name="State">0</param>
                         </action>
-                    </actions>
-                </event-block>
-                <event-block sid="7375309452095241">
-                    <conditions>
-                        <condition id="0" name="On collision with another object" sid="6622005970893722" type="WindBullet">
-                            <param id="0" name="Object">EnemyMoo</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="-10" name="Set value" sid="4968312601945151" type="EnemyMoo">
-                            <param id="0" name="Instance variable">Captured</param>
-                            <param id="1" name="Value">&quot;T&quot;</param>
-                        </action>
-                        <action id="-9" name="Destroy" sid="7678468513209213" type="WindBullet" />
                     </actions>
                 </event-block>
                 <event-block sid="8502299289233068">
                     <conditions>
                         <condition id="0" name="On collision with another object" sid="7286480177526305" type="EnemyMoo">
-                            <param id="0" name="Object">EnemyMooLimitsL</param>
+                            <param id="0" name="Object">EnemyLimit</param>
                         </condition>
                     </conditions>
-                    <actions>
-                        <action id="-10" name="Set value" sid="3826313646610755" type="EnemyMoo">
-                            <param id="0" name="Instance variable">Move</param>
-                            <param id="1" name="Value">&quot;L&quot;</param>
-                        </action>
-                    </actions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="3044852239342468">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="8282680662181853" type="EnemyMoo">
+                                    <param id="0" name="Instance variable">Move</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;L&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="4992106504025945" type="EnemyMoo">
+                                    <param id="0" name="Instance variable">Move</param>
+                                    <param id="1" name="Value">&quot;R&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="7630031288088082">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="5213264171457122" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="3826313646610755" type="EnemyMoo">
+                                    <param id="0" name="Instance variable">Move</param>
+                                    <param id="1" name="Value">&quot;L&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
-                <event-block sid="2561338694789132">
+                <event-block sid="274540572516362">
                     <conditions>
-                        <condition id="0" name="On collision with another object" sid="1514367083708752" type="EnemyMoo">
-                            <param id="0" name="Object">EnemyMooLimitsR</param>
+                        <condition id="1" name="Is overlapping another object" sid="7430766680172236" type="EnemyMoo">
+                            <param id="0" name="Object">EnemyNoMoveZone</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-10" name="Set value" sid="4992106504025945" type="EnemyMoo">
-                            <param id="0" name="Instance variable">Move</param>
-                            <param id="1" name="Value">&quot;R&quot;</param>
+                        <action behavior="8Direction" id="4" name="Set max speed" sid="2534264656155858" type="EnemyMoo">
+                            <param id="0" name="Max Speed">0</param>
                         </action>
                     </actions>
                 </event-block>
@@ -256,7 +714,7 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action behavior="Platform" id="7" name="Simulate control" sid="2312434522709399" type="EnemyMoo">
+                        <action behavior="8Direction" id="7" name="Simulate control" sid="2312434522709399" type="EnemyMoo">
                             <param id="0" name="Control">0</param>
                         </action>
                     </actions>
@@ -270,8 +728,27 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action behavior="Platform" id="7" name="Simulate control" sid="6946886472456225" type="EnemyMoo">
+                        <action behavior="8Direction" id="7" name="Simulate control" sid="6946886472456225" type="EnemyMoo">
                             <param id="0" name="Control">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="3794458466025574">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="8886337872235553" type="EnemyMoo">
+                            <param id="0" name="Instance variable">Destroy</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;T&quot;</param>
+                        </condition>
+                        <condition id="-14" name="Pick by unique ID" sid="8644792492566418" type="EnemyRespawnPortal">
+                            <param id="0" name="Unique ID">EnemyMoo.SpawnUID</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="3565421642157817" type="EnemyMoo" />
+                        <action id="-10" name="Set value" sid="6506564678662236" type="EnemyRespawnPortal">
+                            <param id="0" name="Instance variable">CountDownToSpawn</param>
+                            <param id="1" name="Value">100</param>
                         </action>
                     </actions>
                 </event-block>
@@ -284,14 +761,10 @@
                             <param id="0" name="Comparison">4</param>
                             <param id="1" name="Speed">0</param>
                         </condition>
-                        <condition id="-14" name="Pick by unique ID" sid="8939886596851737" type="EnemyRespawnPortal">
-                            <param id="0" name="Unique ID">EnemyMoo.SpawnUID</param>
-                        </condition>
                     </conditions>
                     <actions>
-                        <action id="-9" name="Destroy" sid="8545179949555794" type="EnemyMoo" />
-                        <action id="-10" name="Set value" sid="7599104299325765" type="EnemyRespawnPortal">
-                            <param id="0" name="Instance variable">SpawnNewEnemy</param>
+                        <action id="-10" name="Set value" sid="8727959875977702" type="EnemyMoo">
+                            <param id="0" name="Instance variable">Destroy</param>
                             <param id="1" name="Value">&quot;T&quot;</param>
                         </action>
                     </actions>
@@ -299,18 +772,10 @@
                 <event-block sid="4190513551319309">
                     <conditions>
                         <condition id="-4" name="Is outside layout" sid="3568958644499001" type="EnemyMoo" />
-                        <condition behavior="Bullet" id="0" name="Compare speed" sid="2315545803932695" type="EnemyMoo">
-                            <param id="0" name="Comparison">4</param>
-                            <param id="1" name="Speed">0</param>
-                        </condition>
-                        <condition id="-14" name="Pick by unique ID" sid="1284308088779373" type="EnemyRespawnPortal">
-                            <param id="0" name="Unique ID">EnemyMoo.SpawnUID</param>
-                        </condition>
                     </conditions>
                     <actions>
-                        <action id="-9" name="Destroy" sid="3511733828366279" type="EnemyMoo" />
-                        <action id="-10" name="Set value" sid="7740646413569138" type="EnemyRespawnPortal">
-                            <param id="0" name="Instance variable">SpawnNewEnemy</param>
+                        <action id="-10" name="Set value" sid="3486509801273876" type="EnemyMoo">
+                            <param id="0" name="Instance variable">Destroy</param>
                             <param id="1" name="Value">&quot;T&quot;</param>
                         </action>
                     </actions>
@@ -320,17 +785,333 @@
                         <condition id="0" name="On collision with another object" sid="9059810814706518" type="EnemyMoo">
                             <param id="0" name="Object">EnemyMoo</param>
                         </condition>
-                        <condition id="-14" name="Pick by unique ID" sid="9842582089885972" type="EnemyRespawnPortal">
-                            <param id="0" name="Unique ID">EnemyMoo.SpawnUID</param>
-                        </condition>
                     </conditions>
                     <actions>
-                        <action id="-9" name="Destroy" sid="8974055931604006" type="EnemyMoo" />
-                        <action id="-10" name="Set value" sid="3216982868303887" type="EnemyRespawnPortal">
-                            <param id="0" name="Instance variable">SpawnNewEnemy</param>
+                        <action id="-10" name="Set value" sid="1524816345614317" type="EnemyMoo">
+                            <param id="0" name="Instance variable">Destroy</param>
                             <param id="1" name="Value">&quot;T&quot;</param>
                         </action>
                     </actions>
+                    <sub-events>
+                        <event-block sid="6763482223098352">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="6403050093402989" type="EnemyMoo">
+                                    <param id="0" name="Instance variable">Captured</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;T&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="9676462746627387" type="Player">
+                                    <param id="0" name="Instance variable">HasWindBullet</param>
+                                    <param id="1" name="Value">&quot;T&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="7707047177397236">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="5220540194932026" type="EnemyMoo">
+                            <param id="0" name="Object">EnemySpiker</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="9366630545043795" type="EnemyMoo">
+                            <param id="0" name="Instance variable">Destroy</param>
+                            <param id="1" name="Value">&quot;T&quot;</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="6380933741661941">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="2331444810150405" type="EnemyMoo">
+                                    <param id="0" name="Instance variable">Captured</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;T&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="4238171654909955" type="Player">
+                                    <param id="0" name="Instance variable">HasWindBullet</param>
+                                    <param id="1" name="Value">&quot;T&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="7471681544752781">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="594840812559618" type="EnemyMoo">
+                            <param id="0" name="Object">EnemyFlyingMoo</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="6556253299983097" type="EnemyMoo">
+                            <param id="0" name="Instance variable">Destroy</param>
+                            <param id="1" name="Value">&quot;T&quot;</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="727222089531085" type="EnemyFlyingMoo">
+                            <param id="0" name="Instance variable">Destroy</param>
+                            <param id="1" name="Value">&quot;T&quot;</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="9856964634767577">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="2586159052491219" type="EnemyMoo">
+                                    <param id="0" name="Instance variable">Captured</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;T&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="3781242436538082" type="Player">
+                                    <param id="0" name="Instance variable">HasWindBullet</param>
+                                    <param id="1" name="Value">&quot;T&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="8166512168455645" title="EnemyMooFlying">
+            <sub-events>
+                <event-block sid="3418285922145763">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="866225763230624" type="EnemyFlyingMoo">
+                            <param id="0" name="Instance variable">Captured</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;T&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Set position" sid="4524566518722738" type="EnemyFlyingMoo">
+                            <param id="0" name="X">lerp(Self.X, Player.X, 0.5)</param>
+                            <param id="1" name="Y">lerp(Self.Y, Player.Y - 75, 0.5)</param>
+                        </action>
+                        <action behavior="8Direction" id="8" name="Set enabled" sid="9224901029376211" type="EnemyFlyingMoo">
+                            <param id="0" name="State">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="935988229819509">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="7857854671445224" type="EnemyFlyingMoo">
+                            <param id="0" name="Object">EnemyLimit</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="3426576881074423">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="3757416800060639" type="EnemyFlyingMoo">
+                                    <param id="0" name="Instance variable">Move</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;U&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="6524855359607833" type="EnemyFlyingMoo">
+                                    <param id="0" name="Instance variable">Move</param>
+                                    <param id="1" name="Value">&quot;D&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="3940991790382234">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="1172237715479563" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="4818684783500026" type="EnemyFlyingMoo">
+                                    <param id="0" name="Instance variable">Move</param>
+                                    <param id="1" name="Value">&quot;U&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="3928418032523952">
+                    <conditions>
+                        <condition id="1" name="Is overlapping another object" sid="9129579471234727" type="EnemyFlyingMoo">
+                            <param id="0" name="Object">EnemyNoMoveZone</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="4" name="Set max speed" sid="8698604268884753" type="EnemyFlyingMoo">
+                            <param id="0" name="Max Speed">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="7960543884862669">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="2901834915565083" type="EnemyFlyingMoo">
+                            <param id="0" name="Instance variable">Move</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;U&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="7" name="Simulate control" sid="2312434522709399" type="EnemyFlyingMoo">
+                            <param id="0" name="Control">2</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="7446599302640096">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="6256723711478029" type="EnemyFlyingMoo">
+                            <param id="0" name="Instance variable">Move</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;D&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="7" name="Simulate control" sid="9770995200360536" type="EnemyFlyingMoo">
+                            <param id="0" name="Control">3</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="8956544222447233">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="19701660891892" type="EnemyFlyingMoo">
+                            <param id="0" name="Instance variable">Destroy</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;T&quot;</param>
+                        </condition>
+                        <condition id="-14" name="Pick by unique ID" sid="6067642188756948" type="EnemyRespawnPortal">
+                            <param id="0" name="Unique ID">EnemyFlyingMoo.SpawnUID</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="8061854130801755" type="EnemyFlyingMoo" />
+                        <action id="-10" name="Set value" sid="3255602477600544" type="EnemyRespawnPortal">
+                            <param id="0" name="Instance variable">CountDownToSpawn</param>
+                            <param id="1" name="Value">100</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="8654320845466874">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="2385865687940698" type="EnemyFlyingMoo">
+                            <param id="0" name="Object">Tile</param>
+                        </condition>
+                        <condition behavior="Bullet" id="0" name="Compare speed" sid="2915041503133089" type="EnemyFlyingMoo">
+                            <param id="0" name="Comparison">4</param>
+                            <param id="1" name="Speed">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="1007023913188344" type="EnemyFlyingMoo">
+                            <param id="0" name="Instance variable">Destroy</param>
+                            <param id="1" name="Value">&quot;T&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="4190513551319309">
+                    <conditions>
+                        <condition id="-4" name="Is outside layout" sid="3568958644499001" type="EnemyFlyingMoo" />
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="3283045511588422" type="EnemyFlyingMoo">
+                            <param id="0" name="Instance variable">Destroy</param>
+                            <param id="1" name="Value">&quot;T&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="5071333443608923">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="9059810814706518" type="EnemyFlyingMoo">
+                            <param id="0" name="Object">EnemyFlyingMoo</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="4990015118563902" type="EnemyFlyingMoo">
+                            <param id="0" name="Instance variable">Destroy</param>
+                            <param id="1" name="Value">&quot;T&quot;</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="9258778199504664">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="5632915718078053" type="EnemyFlyingMoo">
+                                    <param id="0" name="Instance variable">Captured</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;T&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="8747745694158005" type="Player">
+                                    <param id="0" name="Instance variable">HasWindBullet</param>
+                                    <param id="1" name="Value">&quot;T&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="7707047177397236">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="5220540194932026" type="EnemyFlyingMoo">
+                            <param id="0" name="Object">EnemySpiker</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="2211267690649235" type="EnemyFlyingMoo">
+                            <param id="0" name="Instance variable">Destroy</param>
+                            <param id="1" name="Value">&quot;T&quot;</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="3728234899976633">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="3740124155507768" type="EnemyFlyingMoo">
+                                    <param id="0" name="Instance variable">Captured</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;T&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="6105964843611644" type="Player">
+                                    <param id="0" name="Instance variable">HasWindBullet</param>
+                                    <param id="1" name="Value">&quot;T&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="1501018242003936">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="8385076208991666" type="EnemyFlyingMoo">
+                            <param id="0" name="Object">EnemyMoo</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="1571588717745801" type="EnemyFlyingMoo">
+                            <param id="0" name="Instance variable">Destroy</param>
+                            <param id="1" name="Value">&quot;T&quot;</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="4398283389276647" type="EnemyMoo">
+                            <param id="0" name="Instance variable">Destroy</param>
+                            <param id="1" name="Value">&quot;T&quot;</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="38443825482304">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="3566662837316593" type="EnemyFlyingMoo">
+                                    <param id="0" name="Instance variable">Captured</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;T&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="9319367650526422" type="Player">
+                                    <param id="0" name="Instance variable">HasWindBullet</param>
+                                    <param id="1" name="Value">&quot;T&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
             </sub-events>
         </event-group>
@@ -339,26 +1120,488 @@
                 <event-block sid="7200103658051619">
                     <conditions>
                         <condition id="-7" name="Compare instance variable" sid="2144851233138942" type="EnemyRespawnPortal">
-                            <param id="0" name="Instance variable">SpawnNewEnemy</param>
+                            <param id="0" name="Instance variable">CountDownToSpawn</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-15" name="Set visible" sid="6971091737762226" type="EnemyRespawnPortal">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="3812011441740156">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="798977017270329" type="EnemyRespawnPortal">
+                            <param id="0" name="Instance variable">CountDownToSpawn</param>
+                            <param id="1" name="Comparison">3</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-15" name="Set visible" sid="3567656389287204" type="EnemyRespawnPortal">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="7801321374345535">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="3211098065235981" type="EnemyRespawnPortal">
+                            <param id="0" name="Instance variable">CountDownToSpawn</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="5094533108758967">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="9715128809937546" type="EnemyRespawnPortal">
+                                    <param id="0" name="Instance variable">EnemyType</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;Moo&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="7072686616905834" type="EnemyRespawnPortal">
+                                    <param id="0" name="Object">EnemyMoo</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="6825718531200147" type="EnemyMoo">
+                                    <param id="0" name="Instance variable">SpawnUID</param>
+                                    <param id="1" name="Value">EnemyRespawnPortal.UID</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="2969706223436254">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="2036662460642668" type="EnemyRespawnPortal">
+                                    <param id="0" name="Instance variable">EnemyType</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;FlyingMoo&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="6978183252940209" type="EnemyRespawnPortal">
+                                    <param id="0" name="Object">EnemyFlyingMoo</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="9000296690698938" type="EnemyFlyingMoo">
+                                    <param id="0" name="Instance variable">SpawnUID</param>
+                                    <param id="1" name="Value">EnemyRespawnPortal.UID</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="1422592446462251" title="Health">
+            <sub-events>
+                <event-block sid="947597229656988">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="7021710585167684" type="Player">
+                            <param id="0" name="Instance variable">Health</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">3</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="250200439894799" type="Player">
+                            <param id="0" name="Instance variable">Health</param>
+                            <param id="1" name="Value">3</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="8957842596741089">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="1610540683299047" type="Player">
+                            <param id="0" name="Instance variable">Health</param>
+                            <param id="1" name="Comparison">5</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                        <condition id="-14" name="Pick by unique ID" sid="7415071410929882" type="HealthHeart">
+                            <param id="0" name="Unique ID">10</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-15" name="Set visible" sid="7875988809040816" type="HealthHeart">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="2996227267134251">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="9968988557968059" type="Player">
+                            <param id="0" name="Instance variable">Health</param>
+                            <param id="1" name="Comparison">5</param>
+                            <param id="2" name="Value">2</param>
+                        </condition>
+                        <condition id="-14" name="Pick by unique ID" sid="7060081764572228" type="HealthHeart">
+                            <param id="0" name="Unique ID">11</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-15" name="Set visible" sid="2674388133245629" type="HealthHeart">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="1060917944876641">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="1098341916943808" type="Player">
+                            <param id="0" name="Instance variable">Health</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">3</param>
+                        </condition>
+                        <condition id="-14" name="Pick by unique ID" sid="5902258790200111" type="HealthHeart">
+                            <param id="0" name="Unique ID">12</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-15" name="Set visible" sid="3214534943304182" type="HealthHeart">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="107731478804577">
+                    <conditions>
+                        <condition id="-7" inverted="1" name="Compare instance variable" sid="633661243953625" type="Player">
+                            <param id="0" name="Instance variable">Health</param>
+                            <param id="1" name="Comparison">5</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                        <condition id="-14" name="Pick by unique ID" sid="5234443615335231" type="HealthHeart">
+                            <param id="0" name="Unique ID">10</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-15" name="Set visible" sid="7392587107613406" type="HealthHeart">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="65002096145549">
+                    <conditions>
+                        <condition id="-7" inverted="1" name="Compare instance variable" sid="3667115558163179" type="Player">
+                            <param id="0" name="Instance variable">Health</param>
+                            <param id="1" name="Comparison">5</param>
+                            <param id="2" name="Value">2</param>
+                        </condition>
+                        <condition id="-14" name="Pick by unique ID" sid="7155372758185101" type="HealthHeart">
+                            <param id="0" name="Unique ID">11</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-15" name="Set visible" sid="3825393435488681" type="HealthHeart">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="2997632419095338">
+                    <conditions>
+                        <condition id="-7" inverted="1" name="Compare instance variable" sid="6744246302047933" type="Player">
+                            <param id="0" name="Instance variable">Health</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">3</param>
+                        </condition>
+                        <condition id="-14" name="Pick by unique ID" sid="3864761804481825" type="HealthHeart">
+                            <param id="0" name="Unique ID">12</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-15" name="Set visible" sid="6184215430984651" type="HealthHeart">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="9941039219120045" title="Damage">
+            <sub-events>
+                <event-block sid="3610127044997344">
+                    <conditions>
+                        <condition id="-4" name="Is outside layout" sid="1274532703064496" type="Player" />
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="6054411490189824" type="Player">
+                            <param id="0" name="Instance variable">Health</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="8821541901559329">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="1342331243473294" type="Player">
+                            <param id="0" name="Object">EnemySpiker</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-12" name="Subtract from" sid="6202767680060281" type="Player">
+                            <param id="0" name="Instance variable">Health</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="4748609237607891" type="Player">
+                            <param id="0" name="Instance variable">ControlsEnabled</param>
+                            <param id="1" name="Value">&quot;F&quot;</param>
+                        </action>
+                        <action behavior="Platform" id="9" name="Set vector Y" sid="7631503918914855" type="Player">
+                            <param id="0" name="Vector Y">0</param>
+                        </action>
+                        <action behavior="Platform" id="1" name="Set max speed" sid="2553209975722414" type="Player">
+                            <param id="0" name="Max Speed">750</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="2743430212556259">
+                            <conditions>
+                                <condition id="-1" name="Compare X" sid="9430841214513146" type="Player">
+                                    <param id="0" name="Comparison">2</param>
+                                    <param id="1" name="X co-ordinate">EnemySpiker.X</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Platform" id="8" name="Set vector X" sid="3575033424384784" type="Player">
+                                    <param id="0" name="Vector X">-750</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="1345638368527452" type="Player">
+                                    <param id="0" name="Instance variable">PlayerDirection</param>
+                                    <param id="1" name="Value">&quot;R&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="9785987041690659">
+                            <conditions>
+                                <condition id="-1" name="Compare X" sid="7651633132666758" type="Player">
+                                    <param id="0" name="Comparison">4</param>
+                                    <param id="1" name="X co-ordinate">EnemySpiker.X</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Platform" id="8" name="Set vector X" sid="418715154527811" type="Player">
+                                    <param id="0" name="Vector X">750</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="4101514017267877" type="Player">
+                                    <param id="0" name="Instance variable">PlayerDirection</param>
+                                    <param id="1" name="Value">&quot;L&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="7046393163277927">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="3501314961255301" type="Player">
+                            <param id="0" name="Object">EnemyMoo</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="6897862060772214" type="EnemyMoo">
+                            <param id="0" name="Instance variable">Captured</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;F&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-12" name="Subtract from" sid="7871217650119446" type="Player">
+                            <param id="0" name="Instance variable">Health</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="1438226588897435" type="Player">
+                            <param id="0" name="Instance variable">ControlsEnabled</param>
+                            <param id="1" name="Value">&quot;F&quot;</param>
+                        </action>
+                        <action behavior="Platform" id="9" name="Set vector Y" sid="7300881833078623" type="Player">
+                            <param id="0" name="Vector Y">0</param>
+                        </action>
+                        <action behavior="Platform" id="1" name="Set max speed" sid="9332258738671148" type="Player">
+                            <param id="0" name="Max Speed">750</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="1876859806235045">
+                            <conditions>
+                                <condition id="-1" name="Compare X" sid="2462572518044113" type="Player">
+                                    <param id="0" name="Comparison">2</param>
+                                    <param id="1" name="X co-ordinate">EnemyMoo.X</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Platform" id="8" name="Set vector X" sid="7986754594651356" type="Player">
+                                    <param id="0" name="Vector X">-750</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="2248299213701608" type="Player">
+                                    <param id="0" name="Instance variable">PlayerDirection</param>
+                                    <param id="1" name="Value">&quot;R&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="7773617915196653">
+                            <conditions>
+                                <condition id="-1" name="Compare X" sid="346643084240518" type="Player">
+                                    <param id="0" name="Comparison">4</param>
+                                    <param id="1" name="X co-ordinate">EnemyMoo.X</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Platform" id="8" name="Set vector X" sid="7015704592807713" type="Player">
+                                    <param id="0" name="Vector X">750</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="4277512944869623" type="Player">
+                                    <param id="0" name="Instance variable">PlayerDirection</param>
+                                    <param id="1" name="Value">&quot;L&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="8064036172887716">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="4845835155930491" type="Player">
+                            <param id="0" name="Object">EnemyFlyingMoo</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="7983845634371545" type="EnemyFlyingMoo">
+                            <param id="0" name="Instance variable">Captured</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;F&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-12" name="Subtract from" sid="3650578483977499" type="Player">
+                            <param id="0" name="Instance variable">Health</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="7787784878143689" type="Player">
+                            <param id="0" name="Instance variable">ControlsEnabled</param>
+                            <param id="1" name="Value">&quot;F&quot;</param>
+                        </action>
+                        <action behavior="Platform" id="9" name="Set vector Y" sid="9342785260920072" type="Player">
+                            <param id="0" name="Vector Y">0</param>
+                        </action>
+                        <action behavior="Platform" id="1" name="Set max speed" sid="8579473984146412" type="Player">
+                            <param id="0" name="Max Speed">750</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="7199595029625248">
+                            <conditions>
+                                <condition id="-1" name="Compare X" sid="3747120076350579" type="Player">
+                                    <param id="0" name="Comparison">2</param>
+                                    <param id="1" name="X co-ordinate">EnemyFlyingMoo.X</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Platform" id="8" name="Set vector X" sid="975412005398819" type="Player">
+                                    <param id="0" name="Vector X">-750</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="1578030307430567" type="Player">
+                                    <param id="0" name="Instance variable">PlayerDirection</param>
+                                    <param id="1" name="Value">&quot;R&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="7904105407870212">
+                            <conditions>
+                                <condition id="-1" name="Compare X" sid="6746624223814917" type="Player">
+                                    <param id="0" name="Comparison">4</param>
+                                    <param id="1" name="X co-ordinate">EnemyFlyingMoo.X</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Platform" id="8" name="Set vector X" sid="4853375078480089" type="Player">
+                                    <param id="0" name="Vector X">750</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="4288116783344229" type="Player">
+                                    <param id="0" name="Instance variable">PlayerDirection</param>
+                                    <param id="1" name="Value">&quot;L&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="3498853205455591" title="Death">
+            <sub-events>
+                <event-block sid="1989047565166156">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="9150368412395801" type="Player">
+                            <param id="0" name="Instance variable">Health</param>
+                            <param id="1" name="Comparison">3</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="3794871779438287" type="Player">
+                            <param id="0" name="Instance variable">Dead</param>
+                            <param id="1" name="Value">&quot;T&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="8310634805291276">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="3428688582505469" type="Player">
+                            <param id="0" name="Instance variable">Dead</param>
                             <param id="1" name="Comparison">0</param>
                             <param id="2" name="Value">&quot;T&quot;</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="0" name="Spawn another object" sid="7072686616905834" type="EnemyRespawnPortal">
-                            <param id="0" name="Object">EnemyMoo</param>
-                            <param id="1" name="Layer">1</param>
-                            <param id="2" name="Image point">0</param>
+                        <action id="-16" name="Set opacity" sid="2901367928317782" type="BlackCurtain">
+                            <param id="0" name="Opacity">BlackCurtain.Opacity + 1</param>
                         </action>
-                        <action id="-10" name="Set value" sid="6825718531200147" type="EnemyMoo">
-                            <param id="0" name="Instance variable">SpawnUID</param>
-                            <param id="1" name="Value">EnemyRespawnPortal.UID</param>
+                        <action behavior="Platform" id="11" name="Set enabled" sid="1869862278027412" type="Player">
+                            <param id="0" name="State">0</param>
                         </action>
-                        <action id="-10" name="Set value" sid="1629351460786523" type="EnemyRespawnPortal">
-                            <param id="0" name="Instance variable">SpawnNewEnemy</param>
+                        <action behavior="Solid" id="0" name="Set enabled" sid="2584139205497494" type="Player">
+                            <param id="0" name="State">0</param>
+                        </action>
+                        <action id="11" name="Set collisions enabled" sid="3100351278890483" type="Player">
+                            <param id="0" name="Collisions">0</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="5622380464015816" type="Player">
+                            <param id="0" name="Instance variable">ControlsEnabled</param>
                             <param id="1" name="Value">&quot;F&quot;</param>
                         </action>
+                        <action id="-26" name="Move to layer" sid="8575499132197618" type="Player">
+                            <param id="0" name="Layer">6</param>
+                        </action>
                     </actions>
+                </event-block>
+                <event-block sid="2734665767196994">
+                    <conditions>
+                        <condition id="-10" name="Compare opacity" sid="5278584063189029" type="BlackCurtain">
+                            <param id="0" name="Comparison">5</param>
+                            <param id="1" name="Opacity">100</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-16" name="Set opacity" sid="943956212758042" type="Player">
+                            <param id="0" name="Opacity">Player.Opacity - 1</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="8425107697489626">
+                            <conditions>
+                                <condition id="-4" name="Is outside layout" sid="8847464481664256" type="Player" />
+                            </conditions>
+                            <actions>
+                                <action id="-26" name="Restart layout" sid="195314135545895" type="System" />
+                            </actions>
+                        </event-block>
+                        <event-block sid="1352503954287524">
+                            <conditions>
+                                <condition id="-10" name="Compare opacity" sid="1459927770846168" type="Player">
+                                    <param id="0" name="Comparison">3</param>
+                                    <param id="1" name="Opacity">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-26" name="Restart layout" sid="4127087585799972" type="System" />
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
             </sub-events>
         </event-group>

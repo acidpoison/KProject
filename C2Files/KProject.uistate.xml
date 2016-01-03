@@ -32,8 +32,15 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <folder expanded="1" path="animation-folder/Tile/" />
         <folder expanded="1" path="animation-folder/EnemyMoo/" />
         <folder expanded="1" path="animation-folder/WindBullet/" />
-        <folder expanded="1" path="animation-folder/EnemyMooLimitsL/" />
-        <folder expanded="1" path="animation-folder/EnemyMooLimitsR/" />
+        <folder expanded="1" path="animation-folder/EnemyLimit/" />
         <folder expanded="1" path="animation-folder/EnemyRespawnPortal/" />
+        <folder expanded="1" path="animation-folder/CameraFollow/" />
+        <folder expanded="1" path="animation-folder/HealthHeart/" />
+        <folder expanded="1" path="animation-folder/Health/" />
+        <folder expanded="1" path="animation-folder/BlackCurtain/" />
+        <folder expanded="1" path="animation-folder/EnemySpiker/" />
+        <folder expanded="1" path="animation-folder/1Up/" />
+        <folder expanded="1" path="animation-folder/EnemyFlyingMoo/" />
+        <folder expanded="1" path="animation-folder/EnemyNoMoveZone/" />
     </folders-expanded>
 </c2uistate>

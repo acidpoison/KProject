@@ -10,13 +10,15 @@
     <unique-id>z0qmyz64oemp</unique-id>
     <saved-with-version>21100</saved-with-version>
     <used-plugins>
+        <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
+        <plugin author="Scirra" id="Text" version="1">Text</plugin>
     </used-plugins>
     <used-behaviors>
         <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
+        <behavior author="Scirra" id="EightDir" version="1">8 Direction</behavior>
         <behavior author="Scirra" id="Platform" version="1">Platform</behavior>
-        <behavior author="Scirra" id="bound" version="1">Bound to layout</behavior>
         <behavior author="Scirra" id="scrollto" version="1">Scroll To</behavior>
         <behavior author="Scirra" id="solid" version="1">Solid</behavior>
     </used-behaviors>
@@ -25,8 +27,8 @@
         <configuration exporter-descname="HTML5" exporter-id="html5" name="HTML5" />
     </configurations>
     <window-size>
-        <width>1280</width>
-        <height>720</height>
+        <width>1600</width>
+        <height>1200</height>
     </window-size>
     <pixel-rounding>0</pixel-rounding>
     <preview-effects>1</preview-effects>
@@ -37,7 +39,7 @@
         <prop name="Enable WebGL">On</prop>
         <prop name="Fullscreen in browser">Letterbox scale</prop>
         <prop name="Fullscreen scaling">High quality</prop>
-        <prop name="Loader style">Construct 2 splash</prop>
+        <prop name="Loader style">Progress bar &amp; logo</prop>
         <prop name="Orientations">Any</prop>
         <prop name="Pause on unfocus">No</prop>
         <prop name="Physics engine">Box2D asm.js</prop>
@@ -52,16 +54,14 @@
             <instance-variables>
                 <instance-variable name="HasWindBullet" sid="6389610551975897" type="string" />
                 <instance-variable name="PlayerDirection" sid="6798183532797192" type="string" />
+                <instance-variable name="Health" sid="8477693120164587" type="number" />
+                <instance-variable name="Dead" sid="6326804977047906" type="string" />
+                <instance-variable name="ControlsEnabled" sid="7050019873778153" type="string" />
+                <instance-variable name="CanJump" sid="9877096503869517" type="string" />
             </instance-variables>
             <behaviors>
                 <behavior-type name="Solid" sid="7858351031600324">
                     <behavior id="solid" />
-                </behavior-type>
-                <behavior-type name="ScrollTo" sid="4216603685322894">
-                    <behavior id="scrollto" />
-                </behavior-type>
-                <behavior-type name="BoundToLayout" sid="1835108808161825">
-                    <behavior id="bound" />
                 </behavior-type>
                 <behavior-type name="Platform" sid="400469797580244">
                     <behavior id="Platform" />
@@ -92,10 +92,11 @@
                 <instance-variable name="Captured" sid="2100188373976574" type="string" />
                 <instance-variable name="Move" sid="7370344816140866" type="string" />
                 <instance-variable name="SpawnUID" sid="3555005746559153" type="number" />
+                <instance-variable name="Destroy" sid="7969742119358557" type="string" />
             </instance-variables>
             <behaviors>
-                <behavior-type name="Platform" sid="1108314830668775">
-                    <behavior id="Platform" />
+                <behavior-type name="8Direction" sid="4129836777390737">
+                    <behavior id="EightDir" />
                 </behavior-type>
                 <behavior-type name="Bullet" sid="1538513022256881">
                     <behavior id="Bullet" />
@@ -114,6 +115,7 @@
             <plugin id="Sprite" />
             <instance-variables>
                 <instance-variable name="Life" sid="4683603217838962" type="number" />
+                <instance-variable name="Return" sid="4766755868969769" type="string" />
             </instance-variables>
             <behaviors>
                 <behavior-type name="Bullet" sid="2971953630603845">
@@ -126,7 +128,7 @@
                 </animation>
             </animation-folder>
         </object-type>
-        <object-type name="EnemyMooLimitsL" sid="7764503269801341">
+        <object-type name="EnemyLimit" sid="7764503269801341">
             <plugin id="Sprite" />
             <animation-folder>
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5336933383081262" speed="5">
@@ -134,21 +136,106 @@
                 </animation>
             </animation-folder>
         </object-type>
-        <object-type name="EnemyMooLimitsR" sid="4978695799229418">
+        <object-type name="EnemyRespawnPortal" sid="3721963836356998">
             <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="CountDownToSpawn" sid="7535756031923101" type="number" />
+                <instance-variable name="EnemyType" sid="9890190803393927" type="string" />
+            </instance-variables>
             <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="8720518042425875" speed="5">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1718964385081987" speed="5">
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
                 </animation>
             </animation-folder>
         </object-type>
-        <object-type name="EnemyRespawnPortal" sid="3721963836356998">
+        <object-type name="CameraFollow" sid="9999007554440086">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="ScrollTo" sid="3320281616925867">
+                    <behavior id="scrollto" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9847922264394565" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="HealthHeart" sid="1344260711357126">
             <plugin id="Sprite" />
             <instance-variables>
-                <instance-variable name="SpawnNewEnemy" sid="3863779461665304" type="string" />
+                <instance-variable name="HealthValue" sid="7205043865478578" type="number" />
             </instance-variables>
             <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="1718964385081987" speed="5">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7826374254413255" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Health" sid="1713693277615395">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4775154643951462" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="BlackCurtain" sid="6659012608495094">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5315902445446498" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="EnemySpiker" sid="5333341642397486">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6685267746031535" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Audio" sid="8895768265502717">
+            <plugin id="Audio" />
+        </object-type>
+        <object-type name="1Up" sid="3882537668941205">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="8631017664960409" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Text" sid="2622110520748196">
+            <plugin id="Text" />
+        </object-type>
+        <object-type name="EnemyFlyingMoo" sid="7233062938844997">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="Captured" sid="3891293294581895" type="string" />
+                <instance-variable name="Move" sid="9291311881906004" type="string" />
+                <instance-variable name="SpawnUID" sid="116819976210896" type="number" />
+                <instance-variable name="Destroy" sid="6418554392420296" type="string" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="8Direction" sid="2676688093833069">
+                    <behavior id="EightDir" />
+                </behavior-type>
+                <behavior-type name="Bullet" sid="6630616266497811">
+                    <behavior id="Bullet" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7408511890177609" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="EnemyNoMoveZone" sid="2590722798214058">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="5371431345329098" speed="5">
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
                 </animation>
             </animation-folder>
@@ -163,8 +250,24 @@
     </event-folder>
     <global-instances>
         <global-instance type="Keyboard" uid="19" />
+        <global-instance type="Audio" uid="0">
+            <properties>
+                <timescale-audio>Off</timescale-audio>
+                <saveload>All</saveload>
+                <play-in-background>No</play-in-background>
+                <positioned-audio></positioned-audio>
+                <panning-model>HRTF</panning-model>
+                <distance-model>Inverse</distance-model>
+                <listener-z-height>600</listener-z-height>
+                <reference-distance>600</reference-distance>
+                <maximum-distance>10000</maximum-distance>
+                <roll-off-factor>1</roll-off-factor>
+            </properties>
+        </global-instance>
     </global-instances>
-    <sounds-folder />
+    <sounds-folder>
+        <file name="Wahoo.m4a" />
+    </sounds-folder>
     <music-folder />
     <files-folder>
         <file-folder name="Icons">

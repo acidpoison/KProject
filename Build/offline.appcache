@@ -1,5 +1,5 @@
 ﻿CACHE MANIFEST
-#1451097583
+#1451782422
 data.js
 c2runtime.js
 jquery-2.1.1.min.js
@@ -7,9 +7,16 @@ images/player-sheet0.png
 images/tile-sheet0.png
 images/enemymoo-sheet0.png
 images/windbullet-sheet0.png
-images/enemymoolimitsl-sheet0.png
-images/enemymoolimitsr-sheet0.png
+images/enemylimit-sheet0.png
 images/enemyrespawnportal-sheet0.png
+images/camerafollow-sheet0.png
+images/healthheart-sheet0.png
+images/health-sheet0.png
+images/enemyspiker-sheet0.png
+images/1up-sheet0.png
+images/enemyflyingmoo-sheet0.png
+images/enemynomovezone-sheet0.png
+media/wahoo.m4a
 icon-16.png
 icon-32.png
 icon-114.png
